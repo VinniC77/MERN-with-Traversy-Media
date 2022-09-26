@@ -4,6 +4,12 @@ const mongoose = require("mongoose");
 
 const goalSchema = mongoose.Schema(
   {
+  // Com cada objetivo, precisaremos saber qual foi o usuário que criou aquele objetivo
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    },
     text: {
       type: String,
       required: [true, "Por favor, adicione um texto"],
