@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser } from "react-icons/fa";
-import { register, reset } from '../features/auth/authSlice'
+import { reset } from '../features/auth/authSlice'
 import Spinner from "../components/Spinner";
 
 const Register = () => {
@@ -19,9 +19,7 @@ const Register = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const { user, isLoading, isError, IsSuccess, message } = useSelector((state) => {
-    state.auth
-  })
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   useEffect(() => {
     if(isError) {
@@ -34,7 +32,7 @@ const Register = () => {
 
     dispatch(reset())
 
-  },[user, isError, IsSuccess, message, navigate, dispatch])
+  },[user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
